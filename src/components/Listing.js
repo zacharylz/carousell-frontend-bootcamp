@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 import { BACKEND_URL } from "../constants.js";
 
 const Listing = () => {
   const [listingId, setListingId] = useState();
-  const [listing, setListing] = useState();
+  const [listing, setListing] = useState({});
 
   useEffect(() => {
     // If there is a listingId, retrieve the listing data
@@ -35,12 +36,24 @@ const Listing = () => {
     }
   }
 
+  const handleClick = () => {
+    axios.put(`${BACKEND_URL}/listings/${listingId}/buy`).then((response) => {
+      setListing(response.data);
+    });
+  };
+
   return (
     <div>
       <Link to="/">Home</Link>
       <Card bg="dark">
-        <Card.Body>{listingDetails}</Card.Body>
+        <Card.Body>
+          {listingDetails}
+          <Button onClick={handleClick} disabled={listing.BuyerId}>
+            Buy
+          </Button>
+        </Card.Body>
       </Card>
+      <br />
     </div>
   );
 };

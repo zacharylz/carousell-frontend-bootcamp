@@ -58,7 +58,7 @@ const NewListingForm = () => {
         setTitle("");
         setCategory("");
         setCondition("");
-        setPrice("");
+        setPrice(0);
         setDescription("");
         setShippingDetails("");
 
@@ -100,13 +100,13 @@ const NewListingForm = () => {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Price</Form.Label>
+        <Form.Label>Price ($)</Form.Label>
         <Form.Control
           type="text"
           name="price"
           value={price}
           onChange={handleChange}
-          placeholder="$999"
+          placeholder="999"
         />
       </Form.Group>
       <Form.Group>
