@@ -37,7 +37,7 @@ const Listing = () => {
   }
 
   const handleClick = () => {
-    axios.put(`${BACKEND_URL}/listings/${listingId}/buy`).then((response) => {
+    axios.put(`${BACKEND_URL}/listings/${listingId}`).then((response) => {
       setListing(response.data);
     });
   };
